@@ -1,3 +1,3 @@
-za\ac\nwu\ImageShare\Logic\BusinessLogic\Service\MyUserDetailService.class
-za\ac\nwu\ImageShare\Logic\BusinessLogic\Service\Implementation\MyUserDetailServiceImplementation.class
-za\ac\nwu\ImageShare\Logic\BusinessLogic\Configuration\BusinessLogicConfiguration.class
+za\ac\nwu\ImageShare\Logic\Service\Configuration\ServiceConfiguration.class
+za\ac\nwu\ImageShare\Logic\Service\Implementation\MyUserDetailServiceImplementation.class
+za\ac\nwu\ImageShare\Logic\Service\MyUserDetailService.class

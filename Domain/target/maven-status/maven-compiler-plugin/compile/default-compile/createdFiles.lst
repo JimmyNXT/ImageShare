@@ -1,2 +1,3 @@
 za\ac\nwu\ImageShare\Domain\Service\GeneralResponse.class
-za\ac\nwu\ImageShare\Domain\Logic\MyUserDetaild.class
+za\ac\nwu\ImageShare\Domain\DataTransfer\UserDTO.class
+za\ac\nwu\ImageShare\Domain\Persistence\User.class

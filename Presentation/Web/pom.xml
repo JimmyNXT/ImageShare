@@ -17,7 +17,7 @@
     <dependencies>
         <dependency>
             <groupId>za.ac.nwu.ImageShare.Logic</groupId>
-            <artifactId>BusinessLogic</artifactId>
+            <artifactId>Service</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

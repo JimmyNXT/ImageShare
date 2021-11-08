@@ -15,7 +15,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>BusinessLogic</module>
+        <module>Service</module>
         <module>Translator</module>
     </modules>
 
