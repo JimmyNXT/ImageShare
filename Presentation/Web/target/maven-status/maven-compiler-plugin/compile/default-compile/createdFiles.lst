@@ -1,0 +1,5 @@
+za\ac\nwu\ImageShare\Presentation\Web\Configuration\WebConfiguration.class
+za\ac\nwu\ImageShare\Presentation\Web\Controller\DemoController.class
+za\ac\nwu\ImageShare\Presentation\Web\Configuration\WebSecurityConfiguration.class
+za\ac\nwu\ImageShare\Presentation\Web\Configuration\MvcConfiguration.class
+za\ac\nwu\ImageShare\Presentation\Web\ImageShareApplication.class
