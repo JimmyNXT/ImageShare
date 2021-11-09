@@ -3,11 +3,12 @@ package za.ac.nwu.ImageShare.Domain.Persistence;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "USER")
 public class User implements Serializable{
-    private Integer ID;
+    private UUID ID;
     private String userName;
     private String password;
     private boolean isActive;
@@ -20,7 +21,7 @@ public class User implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
-    public Integer getID() {
+    public UUID getID() {
         return this.ID;
     }
 
@@ -44,7 +45,7 @@ public class User implements Serializable{
         return this.role;
     }
 
-    public void setID(Integer ID) {
+    public void setID(UUID ID) {
         this.ID = ID;
     }
 
@@ -62,29 +63,5 @@ public class User implements Serializable{
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return ID == user.ID && isActive == user.isActive && Objects.equals(userName, user.userName) && Objects.equals(password, user.password) && Objects.equals(role, user.role);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(ID, userName, password, isActive, role);
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "ID=" + ID +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", isActive=" + isActive +
-                ", role='" + role + '\'' +
-                '}';
     }
 }
