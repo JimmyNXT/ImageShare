@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories({"za.ac.nwu.ImageShare.Persistence.Repository.Persistence"})
+@EnableJpaRepositories({"za.ac.nwu.ImageShare.Persistence.Repository"})
 @EntityScan({"za.ac.nwu.ImageShare.Domain.Persistence"})
 @PropertySource(value = "classpath:application-db.properties")
 public class RepositoryConfiguration {

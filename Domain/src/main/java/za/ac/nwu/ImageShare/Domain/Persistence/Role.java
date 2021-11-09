@@ -2,6 +2,7 @@ package za.ac.nwu.ImageShare.Domain.Persistence;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -9,13 +10,19 @@ import java.util.Objects;
 public class Role implements Serializable {
     private Integer ID;
     private String Name;
+    private String Description;
+    private List<User> users;
+
+
 
     public Role() {
     }
 
-    public Role(Integer ID, String name) {
+    public Role(Integer ID, String name, String description, List<User> users) {
         this.ID = ID;
-        Name = name;
+        this.Name = name;
+        this.Description = description;
+        this.users = users;
     }
 
     @Id
@@ -30,6 +37,16 @@ public class Role implements Serializable {
         return Name;
     }
 
+    @Column(name = "DESCRIPTION")
+    public String getDescription() {
+        return Description;
+    }
+
+    @ManyToMany(targetEntity = User.class, mappedBy = "roles", cascade = CascadeType.ALL)
+    public List<User> getUsers() {
+        return users;
+    }
+
     public void setID(Integer ID) {
         this.ID = ID;
     }
@@ -38,24 +55,11 @@ public class Role implements Serializable {
         Name = name;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Role role = (Role) o;
-        return Objects.equals(ID, role.ID) && Objects.equals(Name, role.Name);
+    public void setDescription(String description) {
+        Description = description;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(ID, Name);
-    }
-
-    @Override
-    public String toString() {
-        return "Role{" +
-                "ID=" + ID +
-                ", Name='" + Name + '\'' +
-                '}';
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }
