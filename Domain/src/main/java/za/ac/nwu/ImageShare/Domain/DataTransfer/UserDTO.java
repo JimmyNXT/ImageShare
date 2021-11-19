@@ -22,12 +22,12 @@ public class UserDTO implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+        return new ArrayList<>();
     }
 
     @Override
     public String getPassword() {
-        return "{noop}pass";
+        return "pass";
     }
 
     @Override

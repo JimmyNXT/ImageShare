@@ -1,14 +1,17 @@
 package za.ac.nwu.ImageShare.Presentation.Web.Controller;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+import java.security.Principal;
+
+@RestController(value = "/api/demo")
 public class DemoController {
 
-    @GetMapping("/")
-    public String home(){
-        return ("<h1>Welcome</h1>");
+    @GetMapping("/home")
+    public String home(Authentication authentication){
+        return ("<h1>Welcome " + authentication.getName() + "</h1>");
     }
 
     @GetMapping("/user")

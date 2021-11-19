@@ -14,9 +14,16 @@ public class User implements Serializable{
     private String password;
     private String email;
     private boolean isActive;
-    private List<Role> roles;
 
     public User() {
+    }
+
+    public User(UUID ID, String userName, String password, String email, boolean isActive) {
+        this.ID = ID;
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+        this.isActive = isActive;
     }
 
     @Id
@@ -45,11 +52,6 @@ public class User implements Serializable{
         return this.isActive;
     }
 
-    @ManyToMany(targetEntity = Role.class,cascade = CascadeType.ALL)
-    public List<Role> getRoles() {
-        return roles;
-    }
-
     public void setID(UUID ID) {
         this.ID = ID;
     }
@@ -68,9 +70,5 @@ public class User implements Serializable{
 
     public void setActive(boolean active) {
         isActive = active;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
     }
 }

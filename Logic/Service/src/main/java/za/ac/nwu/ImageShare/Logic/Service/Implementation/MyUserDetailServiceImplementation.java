@@ -12,7 +12,7 @@ import za.ac.nwu.ImageShare.Logic.Service.MyUserDetailService;
 public class MyUserDetailServiceImplementation implements MyUserDetailService {
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return new UserDTO(s);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return new UserDTO(username);
     }
 }

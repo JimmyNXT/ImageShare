@@ -9,4 +9,5 @@ import za.ac.nwu.ImageShare.Logic.Service.Configuration.ServiceConfiguration;
 @Configuration
 @ComponentScan({"za.ac.nwu.ImageShare.Presentation.Web.Controller"})
 public class WebConfiguration {
+
 }

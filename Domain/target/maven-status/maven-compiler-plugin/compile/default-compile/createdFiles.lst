@@ -1,0 +1,6 @@
+za\ac\nwu\ImageShare\Domain\DataTransfer\AuthenticationResponseDTO.class
+za\ac\nwu\ImageShare\Domain\Service\GeneralResponse.class
+za\ac\nwu\ImageShare\Domain\DataTransfer\RegistrationRequestDTO.class
+za\ac\nwu\ImageShare\Domain\DataTransfer\UserDTO.class
+za\ac\nwu\ImageShare\Domain\Persistence\User.class
+za\ac\nwu\ImageShare\Domain\DataTransfer\AuthenticationRequestDTO.class
