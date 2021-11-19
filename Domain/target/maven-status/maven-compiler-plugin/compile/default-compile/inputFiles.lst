@@ -1,6 +1,10 @@
-W:\Users\Jimmy\OneDrive - NORTH-WEST UNIVERSITY\2021\Semester 2\CMPG 323\Project 2\ImageShare\Domain\src\main\java\za\ac\nwu\ImageShare\Domain\DataTransfer\AuthenticationResponseDTO.java
 W:\Users\Jimmy\OneDrive - NORTH-WEST UNIVERSITY\2021\Semester 2\CMPG 323\Project 2\ImageShare\Domain\src\main\java\za\ac\nwu\ImageShare\Domain\Service\GeneralResponse.java
+W:\Users\Jimmy\OneDrive - NORTH-WEST UNIVERSITY\2021\Semester 2\CMPG 323\Project 2\ImageShare\Domain\src\main\java\za\ac\nwu\ImageShare\Domain\Exception\ApiExceptionHandler.java
+W:\Users\Jimmy\OneDrive - NORTH-WEST UNIVERSITY\2021\Semester 2\CMPG 323\Project 2\ImageShare\Domain\src\main\java\za\ac\nwu\ImageShare\Domain\Presentation\BasicInfoResponseDTO.java
+W:\Users\Jimmy\OneDrive - NORTH-WEST UNIVERSITY\2021\Semester 2\CMPG 323\Project 2\ImageShare\Domain\src\main\java\za\ac\nwu\ImageShare\Domain\Presentation\UserAuthenticationResponse.java
+W:\Users\Jimmy\OneDrive - NORTH-WEST UNIVERSITY\2021\Semester 2\CMPG 323\Project 2\ImageShare\Domain\src\main\java\za\ac\nwu\ImageShare\Domain\Exception\ApiDatabaseException.java
 W:\Users\Jimmy\OneDrive - NORTH-WEST UNIVERSITY\2021\Semester 2\CMPG 323\Project 2\ImageShare\Domain\src\main\java\za\ac\nwu\ImageShare\Domain\DataTransfer\UserDTO.java
+W:\Users\Jimmy\OneDrive - NORTH-WEST UNIVERSITY\2021\Semester 2\CMPG 323\Project 2\ImageShare\Domain\src\main\java\za\ac\nwu\ImageShare\Domain\Exception\ApiException.java
 W:\Users\Jimmy\OneDrive - NORTH-WEST UNIVERSITY\2021\Semester 2\CMPG 323\Project 2\ImageShare\Domain\src\main\java\za\ac\nwu\ImageShare\Domain\Persistence\User.java
-W:\Users\Jimmy\OneDrive - NORTH-WEST UNIVERSITY\2021\Semester 2\CMPG 323\Project 2\ImageShare\Domain\src\main\java\za\ac\nwu\ImageShare\Domain\DataTransfer\AuthenticationRequestDTO.java
-W:\Users\Jimmy\OneDrive - NORTH-WEST UNIVERSITY\2021\Semester 2\CMPG 323\Project 2\ImageShare\Domain\src\main\java\za\ac\nwu\ImageShare\Domain\DataTransfer\RegistrationRequestDTO.java
+W:\Users\Jimmy\OneDrive - NORTH-WEST UNIVERSITY\2021\Semester 2\CMPG 323\Project 2\ImageShare\Domain\src\main\java\za\ac\nwu\ImageShare\Domain\Presentation\UserRegistrationRequest.java
+W:\Users\Jimmy\OneDrive - NORTH-WEST UNIVERSITY\2021\Semester 2\CMPG 323\Project 2\ImageShare\Domain\src\main\java\za\ac\nwu\ImageShare\Domain\Presentation\UserAuthenticationRequest.java

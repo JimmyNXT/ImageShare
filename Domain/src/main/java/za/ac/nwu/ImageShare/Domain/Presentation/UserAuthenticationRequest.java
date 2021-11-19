@@ -1,12 +1,12 @@
-package za.ac.nwu.ImageShare.Domain.DataTransfer;
+package za.ac.nwu.ImageShare.Domain.Presentation;
 
 import java.io.Serializable;
 
-public class AuthenticationRequestDTO implements Serializable {
+public class UserAuthenticationRequest implements Serializable {
     private String username;
     private String password;
 
-    public AuthenticationRequestDTO(String username, String password) {
+    public UserAuthenticationRequest(String username, String password) {
         this.username = username;
         this.password = password;
     }

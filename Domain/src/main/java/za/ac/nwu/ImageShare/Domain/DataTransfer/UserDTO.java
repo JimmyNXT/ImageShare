@@ -1,23 +1,41 @@
 package za.ac.nwu.ImageShare.Domain.DataTransfer;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import za.ac.nwu.ImageShare.Domain.Persistence.User;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.Objects;
 
 public class UserDTO implements UserDetails {
 
-    private String userName;
-//    private String password;
+    private String username;
+    private String email;
+    private String password;
+    private boolean isActive;
 
-    public UserDTO() {
+    public UserDTO(String username, String email, String password, boolean isActive) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.isActive = isActive;
     }
 
-    public UserDTO(String userName) {
-        this.userName = userName;
+    public UserDTO(User user) {
+        this.username = user.getUserName();
+        this.email = user.getEmail();
+        this.password = user.getPassword();
+        this.isActive = user.isActive();
+    }
+
+    @Override
+    public String getUsername() {
+        return this.username;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     @Override
@@ -27,12 +45,12 @@ public class UserDTO implements UserDetails {
 
     @Override
     public String getPassword() {
-        return "pass";
+        return this.password;
     }
 
-    @Override
-    public String getUsername() {
-        return this.userName;
+
+    public User getUser(){
+        return new User(this.username, this.password, this.email, this.isActive);
     }
 
     @Override
@@ -52,6 +70,29 @@ public class UserDTO implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return this.isActive;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserDTO userDTO = (UserDTO) o;
+        return isActive == userDTO.isActive && Objects.equals(username, userDTO.username) && Objects.equals(email, userDTO.email) && Objects.equals(password, userDTO.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username, email, password, isActive);
+    }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", isActive=" + isActive +
+                '}';
     }
 }

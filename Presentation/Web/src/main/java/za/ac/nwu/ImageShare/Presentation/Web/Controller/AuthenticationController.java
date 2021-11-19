@@ -1,8 +1,6 @@
 package za.ac.nwu.ImageShare.Presentation.Web.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -10,9 +8,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
-import za.ac.nwu.ImageShare.Domain.DataTransfer.AuthenticationRequestDTO;
-import za.ac.nwu.ImageShare.Domain.DataTransfer.AuthenticationResponseDTO;
-import za.ac.nwu.ImageShare.Domain.DataTransfer.RegistrationRequestDTO;
+import za.ac.nwu.ImageShare.Domain.Presentation.UserAuthenticationRequest;
+import za.ac.nwu.ImageShare.Domain.Presentation.UserAuthenticationResponse;
+import za.ac.nwu.ImageShare.Domain.Presentation.UserRegistrationRequest;
 import za.ac.nwu.ImageShare.Logic.Service.MyUserDetailService;
 import za.ac.nwu.ImageShare.Presentation.Web.Utility.JwtUtility;
 
@@ -31,32 +29,26 @@ public class AuthenticationController {
     }
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequestDTO authenticationRequestDTO) throws Exception {
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody UserAuthenticationRequest userAuthenticationRequest) throws Exception {
         try {
             authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(authenticationRequestDTO.getUsername(), authenticationRequestDTO.getPassword())
+                    new UsernamePasswordAuthenticationToken(userAuthenticationRequest.getUsername(), userAuthenticationRequest.getPassword())
             );
         } catch (BadCredentialsException e) {
             throw new Exception("Incorrect username or password", e);
         }
 
         final UserDetails userDetails = userDetailService
-                .loadUserByUsername(authenticationRequestDTO.getUsername());
+                .loadUserByUsername(userAuthenticationRequest.getUsername());
 
         final String jwt = jwtUtility.generateToken(userDetails);
 
-        return ResponseEntity.ok(new AuthenticationResponseDTO(jwt));
+        return ResponseEntity.ok(new UserAuthenticationResponse(jwt));
     }
 
     @PostMapping(value = "/register")
-    public ResponseEntity<?> registerNewUser(@RequestBody RegistrationRequestDTO registrationRequest){
+    public ResponseEntity<?> registerNewUser(@RequestBody UserRegistrationRequest registrationRequest){
         System.out.println(registrationRequest.toString());
         return ResponseEntity.ok("test");
     }
-
-//    @RequestMapping(value="register", method = RequestMethod.OPTIONS)
-//    public ResponseEntity<?> registerNewUserOptions(){
-//        return ResponseEntity.ok().allow(HttpMethod.POST).build();
-//    }
-
 }

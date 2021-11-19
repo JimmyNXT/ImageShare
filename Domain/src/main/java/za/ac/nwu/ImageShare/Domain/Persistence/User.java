@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "USER")
+@Table(name = "user")
 public class User implements Serializable{
     private UUID ID;
     private String userName;
@@ -26,6 +26,13 @@ public class User implements Serializable{
         this.isActive = isActive;
     }
 
+    public User(String userName, String password, String email, boolean isActive) {
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+        this.isActive = isActive;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
@@ -33,7 +40,7 @@ public class User implements Serializable{
         return this.ID;
     }
 
-    @Column(name = "USERNAME", unique=true)
+    @Column(name = "USERNAME"/*, unique=true*/)
     public String getUserName() {
         return this.userName;
     }

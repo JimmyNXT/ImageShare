@@ -12,16 +12,23 @@ const Register = () => {
 
     let rootUrl = process.env.PUBLIC_URL;
 
-    console.log("Root Url : " + rootUrl);
-
+    // const response =
     await fetch(rootUrl + "/auth/register", {
       method: "POST",
+      // mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        // "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({ username, email, password }),
     });
+
+    // const data = await response.json();
+
+    // console.log("data");
+    // console.log(JSON.stringify({ username, email, password }));
+    // console.log(data);
 
     setRedirect(true);
   };

@@ -7,6 +7,6 @@ import za.ac.nwu.ImageShare.Logic.Translator.Configuration.TranslatorConfigurati
 
 @Import({TranslatorConfiguration.class})
 @Configuration
-@ComponentScan({"za.ac.nwu.ImageShare.Logic.Service"})
+@ComponentScan({"za.ac.nwu.ImageShare.Logic.Service", "za.ac.nwu.ImageShare.Logic.Service.Validator"})
 public class ServiceConfiguration {
 }

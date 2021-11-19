@@ -1,11 +1,11 @@
-package za.ac.nwu.ImageShare.Domain.DataTransfer;
+package za.ac.nwu.ImageShare.Domain.Presentation;
 
-public class RegistrationRequestDTO {
+public class UserRegistrationRequest {
     private String username;
     private String email;
     private String password;
 
-    public RegistrationRequestDTO(String username, String email, String password) {
+    public UserRegistrationRequest(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -37,7 +37,7 @@ public class RegistrationRequestDTO {
 
     @Override
     public String toString() {
-        return "RegistrationRequestDTO{" +
+        return "UserRegistrationRequest{" +
                 "username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
