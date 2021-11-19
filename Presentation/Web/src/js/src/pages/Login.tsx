@@ -25,15 +25,6 @@ const Login = () => {
 
     let data = await response.json();
     setCookie("jwt", "Bearer " + data.jwt);
-    // document.cookie =
-    //   "jwt=Bearer " +
-    //   data.jwt +
-    //   +";max-age=" +
-    //   1000 * 60 * 60 * 10 +
-    //   +";domail=" +
-    //   process.env.PUBLIC_URL +
-    //   ";path=/" +
-    //   ";samesite=lax";
 
     setRedirect(true);
   };

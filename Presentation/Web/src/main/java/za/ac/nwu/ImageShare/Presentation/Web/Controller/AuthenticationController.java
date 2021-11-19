@@ -8,10 +8,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
+import za.ac.nwu.ImageShare.Domain.DataTransfer.UserDTO;
+import za.ac.nwu.ImageShare.Domain.Exception.ApiUserException;
 import za.ac.nwu.ImageShare.Domain.Presentation.UserAuthenticationRequest;
 import za.ac.nwu.ImageShare.Domain.Presentation.UserAuthenticationResponse;
 import za.ac.nwu.ImageShare.Domain.Presentation.UserRegistrationRequest;
 import za.ac.nwu.ImageShare.Logic.Service.MyUserDetailService;
+import za.ac.nwu.ImageShare.Logic.Service.UserService;
 import za.ac.nwu.ImageShare.Presentation.Web.Utility.JwtUtility;
 
 @RestController
@@ -20,22 +23,27 @@ public class AuthenticationController {
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailService;
     private final JwtUtility jwtUtility;
+    private final UserService userService;
 
     @Autowired
-    public AuthenticationController(AuthenticationManager authenticationManager, MyUserDetailService userDetailService, JwtUtility jwtUtility) {
+    public AuthenticationController(AuthenticationManager authenticationManager, MyUserDetailService userDetailService, JwtUtility jwtUtility, UserService userService) {
         this.authenticationManager = authenticationManager;
         this.userDetailService = userDetailService;
         this.jwtUtility = jwtUtility;
+        this.userService = userService;
     }
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody UserAuthenticationRequest userAuthenticationRequest) throws Exception {
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody UserAuthenticationRequest userAuthenticationRequest) {
+        System.out.println();
+        System.out.println(userAuthenticationRequest.toString());
+        System.out.println();
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(userAuthenticationRequest.getUsername(), userAuthenticationRequest.getPassword())
             );
         } catch (BadCredentialsException e) {
-            throw new Exception("Incorrect username or password", e);
+            throw new ApiUserException("Incorrect username or password");
         }
 
         final UserDetails userDetails = userDetailService
@@ -48,7 +56,7 @@ public class AuthenticationController {
 
     @PostMapping(value = "/register")
     public ResponseEntity<?> registerNewUser(@RequestBody UserRegistrationRequest registrationRequest){
-        System.out.println(registrationRequest.toString());
-        return ResponseEntity.ok("test");
+        userService.addNewUser(registrationRequest);
+        return ResponseEntity.ok("");
     }
 }

@@ -10,7 +10,8 @@ import za.ac.nwu.ImageShare.Logic.Service.Configuration.ServiceConfiguration;
 @ComponentScan({
         "za.ac.nwu.ImageShare.Presentation.Web.Controller",
         "za.ac.nwu.ImageShare.Presentation.Web.Filter",
-        "za.ac.nwu.ImageShare.Domain.Presentation"
+        "za.ac.nwu.ImageShare.Domain.Presentation",
+        "za.ac.nwu.ImageShare.Domain.Exception"
 })
 public class WebConfiguration {
 }

@@ -20,8 +20,7 @@ public class UserTranslatorImplementation implements UserTranslator {
     }
 
     public UserDTO getUserByUsername(String username){
-//        return new UserDTO(userRepository.getUserByUsername(username));
-        return new UserDTO(username,"test@test.loc", "pass", true);
+        return new UserDTO(userRepository.getByUsername(username));
     }
 
     public UserDTO getUserById(UUID userID){
