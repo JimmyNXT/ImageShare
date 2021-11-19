@@ -16,7 +16,8 @@ import za.ac.nwu.ImageShare.Domain.DataTransfer.RegistrationRequestDTO;
 import za.ac.nwu.ImageShare.Logic.Service.MyUserDetailService;
 import za.ac.nwu.ImageShare.Presentation.Web.Utility.JwtUtility;
 
-@RestController(value = "/api/auth")
+@RestController
+@RequestMapping(("/auth"))
 public class AuthenticationController {
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailService;
@@ -47,7 +48,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(new AuthenticationResponseDTO(jwt));
     }
 
-    @PostMapping(value = "/register", consumes = MediaType.TEXT_PLAIN_VALUE)
+    @PostMapping(value = "/register")
     public ResponseEntity<?> registerNewUser(@RequestBody RegistrationRequestDTO registrationRequest){
         System.out.println(registrationRequest.toString());
         return ResponseEntity.ok("test");

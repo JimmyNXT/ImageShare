@@ -7,7 +7,6 @@ import za.ac.nwu.ImageShare.Logic.Service.Configuration.ServiceConfiguration;
 
 @Import({ServiceConfiguration.class})
 @Configuration
-@ComponentScan({"za.ac.nwu.ImageShare.Presentation.Web.Controller"})
+@ComponentScan({"za.ac.nwu.ImageShare.Presentation.Web.Controller", "za.ac.nwu.ImageShare.Presentation.Web.Filter"})
 public class WebConfiguration {
-
 }

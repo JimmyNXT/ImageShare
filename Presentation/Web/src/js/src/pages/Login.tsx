@@ -7,7 +7,7 @@ const Login = () => {
   const submit = async (e: SyntheticEvent) => {
     e.preventDefault();
 
-    await fetch("http://localhost:8080/authenticate", {
+    await fetch("/auth/authenticate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -10,31 +10,29 @@ const Register = () => {
   const submit = async (e: SyntheticEvent) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:8080/register", {
+    let rootUrl = process.env.PUBLIC_URL;
+
+    console.log("Root Url : " + rootUrl);
+
+    await fetch(rootUrl + "/auth/register", {
       method: "POST",
-      // mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        // "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({ username, email, password }),
     });
 
-    const data = await response.json();
-
-    console.log(data);
-
-    //setRedirect(true);
+    setRedirect(true);
   };
 
   if (redirect) {
-    return <Navigate to={"/register"} />;
+    return <Navigate to={"/login"} />;
   }
 
   return (
     <form onSubmit={submit}>
-      <h1 className="h3 mb-3 fw-normal">Please Register</h1>
+      <h1 className="h3 mb-3 fw-normal">Please Register Here</h1>
 
       <input
         type="username"

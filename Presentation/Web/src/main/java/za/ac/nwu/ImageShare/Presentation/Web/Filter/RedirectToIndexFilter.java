@@ -6,10 +6,10 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-//@Component
+@Component
 public class RedirectToIndexFilter implements Filter {
 
-    private String[] redirectPaths = new String[]{"/login", "register"};
+    private String[] redirectPaths = new String[]{"/login", "/register"};
 
     @Override
     public void doFilter(ServletRequest request,
@@ -23,6 +23,7 @@ public class RedirectToIndexFilter implements Filter {
 
         for (int i = 0; ((i < redirectPaths.length) && !shouldRedirect); i++) {
             if(requestURI.startsWith(redirectPaths[i])){
+                System.out.println("Redirected");
                 shouldRedirect = true;
             }
         }
