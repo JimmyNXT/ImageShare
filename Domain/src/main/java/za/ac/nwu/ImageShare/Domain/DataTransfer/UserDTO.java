@@ -2,11 +2,10 @@ package za.ac.nwu.ImageShare.Domain.DataTransfer;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import za.ac.nwu.ImageShare.Domain.Persistence.Image;
 import za.ac.nwu.ImageShare.Domain.Persistence.User;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Objects;
+import java.util.*;
 
 public class UserDTO implements UserDetails {
 
@@ -50,7 +49,7 @@ public class UserDTO implements UserDetails {
 
 
     public User getUser(){
-        return new User(this.username, this.password, this.email, this.isActive);
+        return new User(this.username, this.password, this.email, this.isActive, Collections.EMPTY_SET);
     }
 
     @Override

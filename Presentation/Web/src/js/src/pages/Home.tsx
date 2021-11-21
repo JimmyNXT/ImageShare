@@ -1,24 +1,10 @@
-import React, { useEffect } from "react";
-import { getCookie } from "../functions/cookieManager";
+import React from "react";
 
-const Home = () => {
-  useEffect(() => {
-    (async () => {
-      const response = await fetch(process.env.PUBLIC_URL + "/api/user", {
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorisation: getCookie("jwt"),
-        },
-      });
-      getCookie("jwt");
-
-      let data = await response.json();
-      console.log(data);
-    })();
-  });
-
-  return <div>Home</div>;
+const Home = (props: { username: string }) => {
+  return (
+    <div>
+      {props.username ? "Hey " + props.username : "You are not loged in"}
+    </div>
+  );
 };
 export default Home;

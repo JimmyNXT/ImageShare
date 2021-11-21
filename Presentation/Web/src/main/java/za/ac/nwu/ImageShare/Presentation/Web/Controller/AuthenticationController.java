@@ -35,14 +35,12 @@ public class AuthenticationController {
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody UserAuthenticationRequest userAuthenticationRequest) {
-        System.out.println();
-        System.out.println(userAuthenticationRequest.toString());
-        System.out.println();
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(userAuthenticationRequest.getUsername(), userAuthenticationRequest.getPassword())
             );
         } catch (BadCredentialsException e) {
+            System.out.println("Bad login");
             throw new ApiUserException("Incorrect username or password");
         }
 

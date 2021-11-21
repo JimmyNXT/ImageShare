@@ -1,3 +1,6 @@
 za\ac\nwu\ImageShare\Logic\Service\Configuration\ServiceConfiguration.class
-za\ac\nwu\ImageShare\Logic\Service\Implementation\MyUserDetailServiceImplementation.class
 za\ac\nwu\ImageShare\Logic\Service\MyUserDetailService.class
+za\ac\nwu\ImageShare\Logic\Service\UserService.class
+za\ac\nwu\ImageShare\Logic\Service\Implementation\MyUserDetailServiceImplementation.class
+za\ac\nwu\ImageShare\Logic\Service\Implementation\UserServiceImplementation.class
+za\ac\nwu\ImageShare\Logic\Service\Validator\EmailValidator.class

@@ -1,2 +1,5 @@
 za\ac\nwu\ImageShare\Persistence\Repository\Configuration\RepositoryConfiguration.class
+za\ac\nwu\ImageShare\Persistence\Repository\FileExtensionRepository.class
+za\ac\nwu\ImageShare\Persistence\Repository\TagRepository.class
+za\ac\nwu\ImageShare\Persistence\Repository\ImageRepository.class
 za\ac\nwu\ImageShare\Persistence\Repository\UserRepository.class

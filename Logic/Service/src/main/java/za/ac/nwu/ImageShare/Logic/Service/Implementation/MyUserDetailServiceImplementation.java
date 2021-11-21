@@ -23,6 +23,10 @@ public class MyUserDetailServiceImplementation implements MyUserDetailService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userTranslator.getUserByUsername(username);
+        try {
+            return userTranslator.getUserByUsername(username);
+        }catch (Exception e){
+            throw new UsernameNotFoundException("Failed to find user in database");
+        }
     }
 }

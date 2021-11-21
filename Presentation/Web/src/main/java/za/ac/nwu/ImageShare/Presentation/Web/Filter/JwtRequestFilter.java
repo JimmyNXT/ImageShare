@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -19,11 +20,11 @@ import java.io.IOException;
 //@ComponentScan({"za.ac.nwu.ImageShare.Presentation.Web.Utility"})
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
-    private MyUserDetailService userDetailsService;
+    private UserDetailsService userDetailsService;
     private JwtUtility jwtUtility;
 
     @Autowired
-    public JwtRequestFilter(MyUserDetailService userDetailsService, JwtUtility jwtUtility) {
+    public JwtRequestFilter(UserDetailsService userDetailsService, JwtUtility jwtUtility) {
         this.userDetailsService = userDetailsService;
         this.jwtUtility = jwtUtility;
     }
@@ -35,7 +36,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         String username = null;
         String jwt = null;
 
-        if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ")){
+        if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ") && authorizationHeader.length() > 8){
             jwt = authorizationHeader.substring(7);
             username = jwtUtility.extractUsername(jwt);
         }

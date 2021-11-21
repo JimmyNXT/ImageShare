@@ -16,14 +16,4 @@ public class DemoController {
     public ResponseEntity<?> home(Authentication authentication){
         return ResponseEntity.ok(new BasicInfoResponseDTO("<h1>Welcome " + authentication.getName() + "</h1>"));
     }
-
-    @GetMapping("/user")
-    public String user(){
-        return ("<h1>Welcome User</h1>");
-    }
-
-    @GetMapping("/admin")
-    public String admnin(){
-        return ("<h1>Welcome Admin</h1>");
-    }
 }

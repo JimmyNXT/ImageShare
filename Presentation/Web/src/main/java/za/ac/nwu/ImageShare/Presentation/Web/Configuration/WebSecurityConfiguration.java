@@ -10,6 +10,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -22,18 +24,18 @@ import za.ac.nwu.ImageShare.Presentation.Web.Filter.JwtRequestFilter;
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
-    private final MyUserDetailService userDetailService;
+    private final UserDetailsService userDetailsService;
     private final JwtRequestFilter jwtRequestFilter;
 
     @Autowired
-    public WebSecurityConfiguration(MyUserDetailService userDetailService, JwtRequestFilter jwtRequestFilter) {
-        this.userDetailService = userDetailService;
+    public WebSecurityConfiguration(UserDetailsService userDetailService, JwtRequestFilter jwtRequestFilter) {
+        this.userDetailsService = userDetailService;
         this.jwtRequestFilter = jwtRequestFilter;
     }
 
     @Override
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder.userDetailsService(userDetailService);
+        authenticationManagerBuilder.userDetailsService(userDetailsService);
     }
 
     @Override
@@ -58,7 +60,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder getPasswordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
 
     @Bean

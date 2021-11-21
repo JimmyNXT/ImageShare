@@ -1,8 +1,9 @@
+import { render } from "@testing-library/react";
 import React, { SyntheticEvent, useState } from "react";
 import { Navigate } from "react-router";
 import { setCookie } from "../functions/cookieManager";
 
-const Login = () => {
+const Login = (props: { propUsername: string; setHasJWT: Function }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
@@ -14,7 +15,6 @@ const Login = () => {
       process.env.PUBLIC_URL + "/auth/authenticate",
       {
         method: "POST",
-        credentials: "include",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
@@ -24,16 +24,26 @@ const Login = () => {
     );
 
     let data = await response.json();
-    setCookie("jwt", "Bearer " + data.jwt);
+    console.log(data);
 
-    setRedirect(true);
+    if (data.jwt) {
+      setCookie("jwt", "Bearer " + data.jwt);
+    }
+
+    if (data.httpStatus === "BAD_REQUEST") {
+      //TODO: Userfeedgack
+      console.log("Title: " + data.title + ", Message: " + data.message);
+    } else {
+      props.setHasJWT(true);
+      setRedirect(true);
+    }
   };
 
   if (redirect) {
     return <Navigate to={"/"} />;
   }
 
-  return (
+  let formContent = (
     <form onSubmit={submit}>
       <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
 
@@ -57,6 +67,16 @@ const Login = () => {
       </button>
     </form>
   );
+
+  if (props.propUsername) {
+    formContent = (
+      <h1 className="h3 mb-3 fw-normal">
+        You are currently logen in as {props.propUsername}
+      </h1>
+    );
+  }
+
+  return <div>{formContent}</div>;
 };
 
 export default Login;
