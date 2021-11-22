@@ -48,8 +48,8 @@ public class UserDTO implements UserDetails {
     }
 
 
-    public User getUser(){
-        return new User(this.username, this.password, this.email, this.isActive, Collections.EMPTY_SET);
+    public User getUser() {
+        return new User(this.username, this.password, this.email, this.isActive, Collections.EMPTY_SET, Collections.EMPTY_SET, Collections.EMPTY_SET);
     }
 
     @Override

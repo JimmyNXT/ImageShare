@@ -19,30 +19,44 @@ public class UserTranslatorImplementation implements UserTranslator {
         this.userRepository = userRepository;
     }
 
-    public UserDTO getUserByUsername(String username){
+    public UserDTO getUserByUsername(String username) {
         return new UserDTO(userRepository.getByUsername(username));
     }
 
-    public UserDTO getUserById(UUID userID){
+    public UserDTO getUserById(UUID userID) {
         return new UserDTO(userRepository.getById(userID));
     }
 
-    public UserDTO addUser(UserDTO inUser){
+    public UserDTO addUser(UserDTO inUser) {
         try {
             User user = userRepository.save(inUser.getUser());
             return new UserDTO(user);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new ApiDatabaseException("Unable to save user to database");
         }
     }
 
-    public boolean isUniqueEmail(String email){
+    public boolean isUniqueEmail(String email) {
         //TODO : Check that email is unique
         return true;
     }
 
-    public boolean isUniqueUsername(String username){
+    public boolean isUniqueUsername(String username) {
         //TODO : Check that username is unique
         return true;
+    }
+
+    public UserDTO updateUser(UUID oldUserID, UserDTO inUser) {
+        try {
+            User userToUpdate = userRepository.getById(oldUserID);
+            userToUpdate.setUserName(inUser.getUsername());
+            userToUpdate.setPassword(inUser.getPassword());
+            userToUpdate.setEmail(inUser.getEmail());
+
+            UserDTO newUserDetail = new UserDTO(userRepository.save(userToUpdate));
+            return newUserDetail;
+        }catch (Exception e){
+            throw new ApiDatabaseException("Unable to update user to database");
+        }
     }
 }

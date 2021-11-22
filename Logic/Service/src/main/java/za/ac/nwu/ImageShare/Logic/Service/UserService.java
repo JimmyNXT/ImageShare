@@ -6,5 +6,6 @@ import za.ac.nwu.ImageShare.Domain.Presentation.UserRegistrationRequest;
 public interface UserService {
     UserDTO addNewUser(UserRegistrationRequest userRegistrationinformation);
     UserDTO getUserDetails(String username);
+    UserDTO updateUser(UserDTO oldUser, UserRegistrationRequest userRegistrationinformation);
 
 }

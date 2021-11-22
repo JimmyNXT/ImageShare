@@ -15,27 +15,29 @@ public class Image implements Serializable {
     private String file;
     private String filename;
     private FileExtension fileExtension;
-    private User owner;
+    private Album album;
     private String geolocation;
     private Set<Tag> tags;
     private LocalDate captureDate;
     private String captureAuthor;
     private ZonedDateTime dateTimeAdded;
+    private Set<User> sharedWithUsers;
 
     public Image() {
     }
 
-    public Image(UUID ID, String file, String filename, FileExtension fileExtension, User owner, String geolocation, Set<Tag> tags, LocalDate captureDate, String captureAuthor, ZonedDateTime dateTimeAdded) {
+    public Image(UUID ID, String file, String filename, FileExtension fileExtension, Album album, String geolocation, Set<Tag> tags, LocalDate captureDate, String captureAuthor, ZonedDateTime dateTimeAdded, Set<User> sharedWithUsers) {
         this.ID = ID;
         this.file = file;
         this.filename = filename;
         this.fileExtension = fileExtension;
-        this.owner = owner;
+        this.album = album;
         this.geolocation = geolocation;
         this.tags = tags;
         this.captureDate = captureDate;
         this.captureAuthor = captureAuthor;
         this.dateTimeAdded = dateTimeAdded;
+        this.sharedWithUsers = sharedWithUsers;
     }
 
     @Id
@@ -62,9 +64,9 @@ public class Image implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "OWNER_ID")
-    public User getOwner() {
-        return owner;
+    @JoinColumn(name = "ALBUM_ID")
+    public Album getAlbum() {
+        return album;
     }
 
     @Column(name = "GEOLOCATION")
@@ -101,6 +103,11 @@ public class Image implements Serializable {
         return dateTimeAdded;
     }
 
+    @ManyToMany(mappedBy = "imagesSharedWithUser", cascade = CascadeType.PERSIST)
+    public Set<User> getSharedWithUsers() {
+        return sharedWithUsers;
+    }
+
     public void setID(UUID ID) {
         this.ID = ID;
     }
@@ -113,12 +120,12 @@ public class Image implements Serializable {
         this.filename = filename;
     }
 
-    public void setFileExtension(FileExtension fileExtention) {
-        this.fileExtension = fileExtention;
+    public void setFileExtension(FileExtension fileExtension) {
+        this.fileExtension = fileExtension;
     }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
+    public void setAlbum(Album album) {
+        this.album = album;
     }
 
     public void setGeolocation(String geolocation) {
@@ -141,17 +148,21 @@ public class Image implements Serializable {
         this.dateTimeAdded = dateTimeAdded;
     }
 
+    public void setSharedWithUsers(Set<User> sharedWithUsers) {
+        this.sharedWithUsers = sharedWithUsers;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Image image = (Image) o;
-        return Objects.equals(ID, image.ID) && Objects.equals(file, image.file) && Objects.equals(filename, image.filename) && Objects.equals(fileExtension, image.fileExtension) && Objects.equals(owner, image.owner) && Objects.equals(geolocation, image.geolocation) && Objects.equals(tags, image.tags) && Objects.equals(captureDate, image.captureDate) && Objects.equals(captureAuthor, image.captureAuthor) && Objects.equals(dateTimeAdded, image.dateTimeAdded);
+        return Objects.equals(ID, image.ID) && Objects.equals(file, image.file) && Objects.equals(filename, image.filename) && Objects.equals(fileExtension, image.fileExtension) && Objects.equals(album, image.album) && Objects.equals(geolocation, image.geolocation) && Objects.equals(tags, image.tags) && Objects.equals(captureDate, image.captureDate) && Objects.equals(captureAuthor, image.captureAuthor) && Objects.equals(dateTimeAdded, image.dateTimeAdded) && Objects.equals(sharedWithUsers, image.sharedWithUsers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, file, filename, fileExtension, owner, geolocation, tags, captureDate, captureAuthor, dateTimeAdded);
+        return Objects.hash(ID, file, filename, fileExtension, album, geolocation, tags, captureDate, captureAuthor, dateTimeAdded, sharedWithUsers);
     }
 
     @Override
@@ -160,13 +171,14 @@ public class Image implements Serializable {
                 "ID=" + ID +
                 ", file='" + file + '\'' +
                 ", filename='" + filename + '\'' +
-                ", FileExtension=" + fileExtension +
-                ", owner=" + owner +
+                ", fileExtension=" + fileExtension +
+                ", album=" + album +
                 ", geolocation='" + geolocation + '\'' +
-                ", Tags=" + tags +
+                ", tags=" + tags +
                 ", captureDate=" + captureDate +
                 ", captureAuthor='" + captureAuthor + '\'' +
                 ", dateTimeAdded=" + dateTimeAdded +
+                ", sharedWithUsers=" + sharedWithUsers +
                 '}';
     }
 }

@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 import { removeCookie } from "../functions/cookieManager";
 // import { i } from "bootstrap-icons";
 
-const Nav = (props: { username: string; setHasJWT: Function }) => {
+const Nav = (props: {
+  username: string;
+  setHasJWT: Function;
+  forceUpdate: Function;
+}) => {
   let menu;
 
   if (!props.username) {
@@ -48,8 +52,9 @@ const Nav = (props: { username: string; setHasJWT: Function }) => {
             className="nav-link"
             to="/login"
             onClick={() => {
-              props.setHasJWT(false);
               removeCookie("jwt");
+              props.forceUpdate();
+              props.setHasJWT(false);
             }}
           >
             Logout

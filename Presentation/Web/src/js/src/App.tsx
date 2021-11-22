@@ -7,10 +7,17 @@ import { getCookie } from "./functions/cookieManager";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import User from "./pages/User";
 
 function App() {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [hasJWT, setHasJWT] = useState(false);
+  const [shouldUpdate, setShouldUpdate] = useState(true);
+
+  let forceUpdate = () => {
+    setShouldUpdate(!shouldUpdate);
+  };
 
   useEffect(() => {
     console.log("Test");
@@ -27,6 +34,7 @@ function App() {
         let data = await response.json();
         console.log(data);
         setUsername(data.username);
+        setEmail(data.email);
       })();
     }
   });
@@ -34,7 +42,11 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Nav username={username} setHasJWT={setHasJWT} />
+        <Nav
+          username={username}
+          setHasJWT={setHasJWT}
+          forceUpdate={forceUpdate}
+        />
         <main className="form-signin">
           <Routes>
             <Route path="/" element={<Home username={username} />} />
@@ -43,6 +55,16 @@ function App() {
               element={<Login propUsername={username} setHasJWT={setHasJWT} />}
             />
             <Route path="/register" element={<Register />} />
+            <Route
+              path="/user"
+              element={
+                <User
+                  propUsername={username}
+                  propEmail={email}
+                  forceUpdate={forceUpdate}
+                />
+              }
+            />
           </Routes>
         </main>
       </div>
