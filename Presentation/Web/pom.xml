@@ -69,6 +69,7 @@
                         <configuration>
                             <filesets>
                                 <fileset>
+
                                     <directory>
                                         src/js/build
                                     </directory>
