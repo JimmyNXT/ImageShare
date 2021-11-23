@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'ImageShare-28508378'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_293CA74958B34DB2937C6F0200515BB1 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_315805A9F91B4F589DEC0E087C6C6E11 }}
           package: '*.jar'
