@@ -30,15 +30,13 @@ public class AlbumTranslatorImplementation implements AlbumTranslator {
     public Set<AlbumDTO> getUsersAlbums(UserDTO userDTO) {
         User user = userRepository.getByUsername(userDTO.getUsername());
         Set<Album> albums = albumRepository.findByOwner(user);
+        System.out.println(albums);
 
         Set<AlbumDTO> albumDTOs = new HashSet<AlbumDTO>();
 
         for (Album a : albums) {
             albumDTOs.add(new AlbumDTO(a));
         }
-
-        albumDTOs.add(new AlbumDTO("Shared with me", user.getUserName()));
-        albumDTOs.add(new AlbumDTO("Shared with me", user.getUserName()));
 
         return albumDTOs;
     }

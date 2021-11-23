@@ -1,0 +1,7 @@
+za\ac\nwu\ImageShare\Logic\Translator\UserTranslator.class
+za\ac\nwu\ImageShare\Logic\Translator\AlbumTranslator.class
+za\ac\nwu\ImageShare\Logic\Translator\Configuration\TranslatorConfiguration.class
+za\ac\nwu\ImageShare\Logic\Translator\Implementation\UserTranslatorImplementation.class
+za\ac\nwu\ImageShare\Logic\Translator\ImageTranslator.class
+za\ac\nwu\ImageShare\Logic\Translator\Implementation\AlbumTranslatorImplementation.class
+za\ac\nwu\ImageShare\Logic\Translator\Implementation\ImageTranslatorImplementation.class

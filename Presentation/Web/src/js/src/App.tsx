@@ -49,31 +49,29 @@ function App() {
           setHasJWT={setHasJWT}
           forceUpdate={forceUpdate}
         />
-        <div className="row py-3">
-          <Sidebar />
-          <main className="form-signin">
-            <Routes>
-              <Route path="/" element={<Home username={username} />} />
-              <Route
-                path="/login"
-                element={
-                  <Login propUsername={username} setHasJWT={setHasJWT} />
-                }
-              />
-              <Route path="/register" element={<Register />} />
-              <Route
-                path="/user"
-                element={
-                  <User
-                    propUsername={username}
-                    propEmail={email}
-                    forceUpdate={forceUpdate}
-                  />
-                }
-              />
-            </Routes>
-          </main>
-        </div>
+        <main className="form-signin">
+          <Routes>
+            <Route
+              path="/"
+              element={<Home username={username} forceUpdate={forceUpdate} />}
+            />
+            <Route
+              path="/login"
+              element={<Login propUsername={username} setHasJWT={setHasJWT} />}
+            />
+            <Route path="/register" element={<Register />} />
+            <Route
+              path="/user"
+              element={
+                <User
+                  propUsername={username}
+                  propEmail={email}
+                  forceUpdate={forceUpdate}
+                />
+              }
+            />
+          </Routes>
+        </main>
       </div>
     </BrowserRouter>
   );

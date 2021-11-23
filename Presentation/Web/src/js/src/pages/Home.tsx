@@ -4,14 +4,14 @@ import { getCookie } from "../functions/cookieManager";
 import Album from "./subpages/Album";
 import Gallary from "./subpages/Gallary";
 
-const Home = (props: { username: string }) => {
+const Home = (props: { username: string; forceUpdate: Function }) => {
   const [album, setAlbum] = useState("");
 
   if (!props.username) return <div>You are not loged in</div>;
 
   let formData = (
     <div>
-      <Gallary setAlbum={setAlbum} />
+      <Gallary setAlbum={setAlbum} forceUpdate={props.forceUpdate} />
     </div>
   );
 

@@ -31,7 +31,8 @@ public class AlbumServiceImplementation implements AlbumService {
     }
 
     public Set<AlbumDTO> getUsersAlbums(UserDTO userDTO){
-        return albumTranslator.getUsersAlbums(userDTO);
+        Set<AlbumDTO> albumDTOSet = albumTranslator.getUsersAlbums(userDTO);
+        return albumDTOSet;
     }
 
     @Override

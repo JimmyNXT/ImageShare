@@ -13,6 +13,8 @@ import za.ac.nwu.ImageShare.Domain.Presentation.AlbumShareRequest;
 import za.ac.nwu.ImageShare.Logic.Service.AlbumService;
 import za.ac.nwu.ImageShare.Logic.Service.UserService;
 
+import java.util.Set;
+
 @RestController
 @RequestMapping("/api/album")
 public class AlbumController {
@@ -29,7 +31,8 @@ public class AlbumController {
     @GetMapping
     public ResponseEntity<?> getAlbums(Authentication authentication){
         UserDTO user = userService.getUserDetails(authentication.getName());
-        return ResponseEntity.ok(albumService.getUsersAlbums(user));
+        Set<AlbumDTO> albumDTOSet = albumService.getUsersAlbums(user);
+        return ResponseEntity.ok(albumDTOSet);
     }
 
     @CrossOrigin("*")
