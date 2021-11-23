@@ -1,13 +1,14 @@
 import React, { SyntheticEvent, useState } from "react";
 import { Navigate } from "react-router";
+import { getCookie } from "../functions/cookieManager";
 
 const User = (props: {
   propUsername: string;
   propEmail: string;
   forceUpdate: Function;
 }) => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState(props.propUsername);
+  const [email, setEmail] = useState(props.propEmail);
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
 
@@ -19,6 +20,7 @@ const User = (props: {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        Authorisation: getCookie("jwt"),
       },
       body: JSON.stringify({ username, email, password }),
     });
@@ -37,7 +39,7 @@ const User = (props: {
         className="form-control"
         placeholder="Username"
         required
-        value={props.propUsername}
+        value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
 
@@ -47,7 +49,7 @@ const User = (props: {
         className="form-control"
         placeholder="name@example.com"
         required
-        value={props.propEmail}
+        value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
       <label className="form-label">Password</label>

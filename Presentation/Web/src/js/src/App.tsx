@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./App.css";
 import Nav from "./components/Nav";
+import Sidebar from "./components/Sidebar";
 import { getCookie } from "./functions/cookieManager";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -20,7 +21,6 @@ function App() {
   };
 
   useEffect(() => {
-    console.log("Test");
     if (getCookie("jwt")) {
       (async () => {
         const response = await fetch(process.env.PUBLIC_URL + "/api/user", {
@@ -32,10 +32,12 @@ function App() {
         });
 
         let data = await response.json();
-        console.log(data);
         setUsername(data.username);
         setEmail(data.email);
       })();
+    } else {
+      setUsername("");
+      setEmail("");
     }
   });
 
@@ -47,26 +49,31 @@ function App() {
           setHasJWT={setHasJWT}
           forceUpdate={forceUpdate}
         />
-        <main className="form-signin">
-          <Routes>
-            <Route path="/" element={<Home username={username} />} />
-            <Route
-              path="/login"
-              element={<Login propUsername={username} setHasJWT={setHasJWT} />}
-            />
-            <Route path="/register" element={<Register />} />
-            <Route
-              path="/user"
-              element={
-                <User
-                  propUsername={username}
-                  propEmail={email}
-                  forceUpdate={forceUpdate}
-                />
-              }
-            />
-          </Routes>
-        </main>
+        <div className="row py-3">
+          <Sidebar />
+          <main className="form-signin">
+            <Routes>
+              <Route path="/" element={<Home username={username} />} />
+              <Route
+                path="/login"
+                element={
+                  <Login propUsername={username} setHasJWT={setHasJWT} />
+                }
+              />
+              <Route path="/register" element={<Register />} />
+              <Route
+                path="/user"
+                element={
+                  <User
+                    propUsername={username}
+                    propEmail={email}
+                    forceUpdate={forceUpdate}
+                  />
+                }
+              />
+            </Routes>
+          </main>
+        </div>
       </div>
     </BrowserRouter>
   );

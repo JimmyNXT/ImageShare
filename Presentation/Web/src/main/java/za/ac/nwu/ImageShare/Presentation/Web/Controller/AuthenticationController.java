@@ -32,6 +32,7 @@ public class AuthenticationController {
         this.userService = userService;
     }
 
+    @CrossOrigin("*")
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody UserAuthenticationRequest userAuthenticationRequest) {
         try {
@@ -51,6 +52,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(new UserAuthenticationResponse(jwt));
     }
 
+    @CrossOrigin("*")
     @PostMapping(value = "/register")
     public ResponseEntity<?> registerNewUser(@RequestBody UserRegistrationRequest registrationRequest){
         userService.addNewUser(registrationRequest);

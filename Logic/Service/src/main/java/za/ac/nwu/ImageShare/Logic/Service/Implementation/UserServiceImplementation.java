@@ -29,12 +29,12 @@ public class UserServiceImplementation implements UserService {
         this.userDetailsService = userDetailsService;
     }
 
-    public UserDTO addNewUser(UserRegistrationRequest userRegistrationinformation) {
-        String password = passwordEncoder.encode(userRegistrationinformation.getPassword());
+    public UserDTO addNewUser(UserRegistrationRequest userRegistrationInformation) {
+        String password = passwordEncoder.encode(userRegistrationInformation.getPassword());
 
         UserDTO newUser = new UserDTO(
-                userRegistrationinformation.getUsername(),
-                userRegistrationinformation.getEmail(),
+                userRegistrationInformation.getUsername(),
+                userRegistrationInformation.getEmail(),
                 password,
                 true);
 
@@ -58,7 +58,7 @@ public class UserServiceImplementation implements UserService {
     }
 
     public UserDTO updateUser(UserDTO oldUser, UserRegistrationRequest userRegistrationInformation) {
-        User userDetails = (User) userDetailsService.loadUserByUsername(oldUser.getUsername());
+        UserDTO userDetails = userTranslator.getUserByUsername(oldUser.getUsername());
         String newPassword = userRegistrationInformation.getPassword();
         String password = "";
 
@@ -73,6 +73,7 @@ public class UserServiceImplementation implements UserService {
                 userRegistrationInformation.getEmail(),
                 password,
                 true);
-        return userTranslator.updateUser(userDetails.getID(), newUser);
+
+        return userTranslator.updateUser(oldUser.getUsername(), newUser);
     }
 }

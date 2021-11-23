@@ -20,6 +20,11 @@
             <artifactId>Repository</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>za.ac.nwu.ImageShare.Persistence</groupId>
+            <artifactId>FileStorage</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

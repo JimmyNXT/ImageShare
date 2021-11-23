@@ -2,6 +2,7 @@ package za.ac.nwu.ImageShare.Logic.Translator.Implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import za.ac.nwu.ImageShare.Domain.DataTransfer.UserDTO;
 import za.ac.nwu.ImageShare.Domain.Exception.ApiDatabaseException;
 import za.ac.nwu.ImageShare.Domain.Persistence.User;
@@ -20,7 +21,11 @@ public class UserTranslatorImplementation implements UserTranslator {
     }
 
     public UserDTO getUserByUsername(String username) {
-        return new UserDTO(userRepository.getByUsername(username));
+        try {
+            return new UserDTO(userRepository.getByUsername(username));
+        } catch (Exception e) {
+            throw new ApiDatabaseException("Unable to load user from database");
+        }
     }
 
     public UserDTO getUserById(UUID userID) {
@@ -46,16 +51,22 @@ public class UserTranslatorImplementation implements UserTranslator {
         return true;
     }
 
-    public UserDTO updateUser(UUID oldUserID, UserDTO inUser) {
+    @Override
+    public UserDTO updateUser(String oldUsername, UserDTO inUser) {
         try {
-            User userToUpdate = userRepository.getById(oldUserID);
+            User userToUpdate = userRepository.getByUsername(oldUsername);
+            userToUpdate = userRepository.getOne(userToUpdate.getID());
             userToUpdate.setUserName(inUser.getUsername());
             userToUpdate.setPassword(inUser.getPassword());
             userToUpdate.setEmail(inUser.getEmail());
+            userToUpdate.setActive(true);
 
-            UserDTO newUserDetail = new UserDTO(userRepository.save(userToUpdate));
+            userRepository.updateUser(userToUpdate.getID(), userToUpdate.getUserName(), userToUpdate.getEmail(), userToUpdate.getPassword());
+
+            UserDTO newUserDetail = new UserDTO(userToUpdate);
             return newUserDetail;
-        }catch (Exception e){
+        } catch (Exception e) {
+            System.out.println(e);
             throw new ApiDatabaseException("Unable to update user to database");
         }
     }

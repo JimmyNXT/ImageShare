@@ -1,13 +1,14 @@
 package za.ac.nwu.ImageShare.Domain.Persistence;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
 @Table(name = "ALBUM")
-public class Album {
+public class Album implements Serializable {
 
     private UUID ID;
     private String name;
@@ -18,6 +19,13 @@ public class Album {
     public Album() {
     }
 
+    public Album(String name, User owner, Set<Image> imageSet, Set<User> sharedWithUsers) {
+        this.name = name;
+        this.owner = owner;
+        this.imageSet = imageSet;
+        this.sharedWithUsers = sharedWithUsers;
+    }
+
     public Album(UUID ID, String name, User owner, Set<Image> imageSet, Set<User> sharedWithUsers) {
         this.ID = ID;
         this.name = name;
@@ -25,6 +33,7 @@ public class Album {
         this.imageSet = imageSet;
         this.sharedWithUsers = sharedWithUsers;
     }
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

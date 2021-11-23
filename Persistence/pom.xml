@@ -16,6 +16,7 @@
 
     <modules>
         <module>Repository</module>
+        <module>FileStorage</module>
     </modules>
 
     <dependencies>

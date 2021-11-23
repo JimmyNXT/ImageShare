@@ -9,5 +9,5 @@ public interface UserTranslator {
     UserDTO addUser(UserDTO inUser);
     boolean isUniqueEmail(String email);
     boolean isUniqueUsername(String username);
-    UserDTO updateUser(UUID oldUserID, UserDTO inUser);
+    UserDTO updateUser(String oldUsername, UserDTO inUser);
 }

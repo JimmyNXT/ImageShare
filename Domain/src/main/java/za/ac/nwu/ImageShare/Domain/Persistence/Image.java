@@ -12,7 +12,6 @@ import java.util.UUID;
 @Table(name = "IMAGE")
 public class Image implements Serializable {
     private UUID ID;
-    private String file;
     private String filename;
     private FileExtension fileExtension;
     private Album album;
@@ -26,9 +25,7 @@ public class Image implements Serializable {
     public Image() {
     }
 
-    public Image(UUID ID, String file, String filename, FileExtension fileExtension, Album album, String geolocation, Set<Tag> tags, LocalDate captureDate, String captureAuthor, ZonedDateTime dateTimeAdded, Set<User> sharedWithUsers) {
-        this.ID = ID;
-        this.file = file;
+    public Image( String filename, FileExtension fileExtension, Album album, String geolocation, Set<Tag> tags, LocalDate captureDate, String captureAuthor, ZonedDateTime dateTimeAdded, Set<User> sharedWithUsers) {
         this.filename = filename;
         this.fileExtension = fileExtension;
         this.album = album;
@@ -40,16 +37,25 @@ public class Image implements Serializable {
         this.sharedWithUsers = sharedWithUsers;
     }
 
+    public Image(UUID ID, String filename, FileExtension fileExtension, Album album, String geolocation, Set<Tag> tags, LocalDate captureDate, String captureAuthor, ZonedDateTime dateTimeAdded, Set<User> sharedWithUsers) {
+        this.ID = ID;
+        this.filename = filename;
+        this.fileExtension = fileExtension;
+        this.album = album;
+        this.geolocation = geolocation;
+        this.tags = tags;
+        this.captureDate = captureDate;
+        this.captureAuthor = captureAuthor;
+        this.dateTimeAdded = dateTimeAdded;
+        this.sharedWithUsers = sharedWithUsers;
+    }
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     public UUID getID() {
         return this.ID;
-    }
-
-    @Column(name = "FILE")
-    public String getFile() {
-        return file;
     }
 
     @Column(name = "FILENAME")
@@ -112,9 +118,6 @@ public class Image implements Serializable {
         this.ID = ID;
     }
 
-    public void setFile(String file) {
-        this.file = file;
-    }
 
     public void setFilename(String filename) {
         this.filename = filename;
@@ -157,19 +160,18 @@ public class Image implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Image image = (Image) o;
-        return Objects.equals(ID, image.ID) && Objects.equals(file, image.file) && Objects.equals(filename, image.filename) && Objects.equals(fileExtension, image.fileExtension) && Objects.equals(album, image.album) && Objects.equals(geolocation, image.geolocation) && Objects.equals(tags, image.tags) && Objects.equals(captureDate, image.captureDate) && Objects.equals(captureAuthor, image.captureAuthor) && Objects.equals(dateTimeAdded, image.dateTimeAdded) && Objects.equals(sharedWithUsers, image.sharedWithUsers);
+        return Objects.equals(ID, image.ID) && Objects.equals(filename, image.filename) && Objects.equals(fileExtension, image.fileExtension) && Objects.equals(album, image.album) && Objects.equals(geolocation, image.geolocation) && Objects.equals(tags, image.tags) && Objects.equals(captureDate, image.captureDate) && Objects.equals(captureAuthor, image.captureAuthor) && Objects.equals(dateTimeAdded, image.dateTimeAdded) && Objects.equals(sharedWithUsers, image.sharedWithUsers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, file, filename, fileExtension, album, geolocation, tags, captureDate, captureAuthor, dateTimeAdded, sharedWithUsers);
+        return Objects.hash(ID, filename, fileExtension, album, geolocation, tags, captureDate, captureAuthor, dateTimeAdded, sharedWithUsers);
     }
 
     @Override
     public String toString() {
         return "Image{" +
                 "ID=" + ID +
-                ", file='" + file + '\'' +
                 ", filename='" + filename + '\'' +
                 ", fileExtension=" + fileExtension +
                 ", album=" + album +

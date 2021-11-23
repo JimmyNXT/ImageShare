@@ -5,9 +5,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import za.ac.nwu.ImageShare.Domain.Persistence.Image;
 import za.ac.nwu.ImageShare.Domain.Persistence.User;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class UserDTO implements UserDetails {
+public class UserDTO implements UserDetails, Serializable {
 
     private String username;
     private String email;

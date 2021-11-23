@@ -50,7 +50,7 @@ public class User implements Serializable {
         return this.ID;
     }
 
-    @Column(name = "USERNAME"/*, unique=true*/)
+    @Column(name = "USERNAME")
     public String getUserName() {
         return this.userName;
     }

@@ -29,7 +29,7 @@ const Nav = (props: {
     menu = (
       <ul className="navbar-nav me-auto mb-2 mb-md-0">
         <li className="nav-item active">
-          <Link className="nav-link" to="/user">
+          <Link className="nav-link" to="/">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="26"

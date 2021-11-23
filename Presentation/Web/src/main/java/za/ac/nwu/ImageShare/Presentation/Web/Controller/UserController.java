@@ -19,14 +19,17 @@ public class UserController {
         this.userService = userService;
     }
 
+    @CrossOrigin("*")
     @GetMapping
     public ResponseEntity<?> getUserData(Authentication authentication){
         UserDTO user = userService.getUserDetails(authentication.getName());
         return ResponseEntity.ok(new UserInformationResponse(user));
     }
 
+    @CrossOrigin("*")
     @PostMapping("/update")
     public ResponseEntity<?> updateUser(Authentication authentication, @RequestBody UserRegistrationRequest registrationRequest){
+        System.out.println("User Name : " + authentication.getName());
         UserDTO oldUser = userService.getUserDetails(authentication.getName());
         UserDTO user = userService.updateUser(oldUser, registrationRequest);
         return ResponseEntity.ok(new UserInformationResponse(user));
