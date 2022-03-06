@@ -26,6 +26,7 @@
         <module>Presentation</module>
         <module>Persistence</module>
         <module>Logic</module>
+        <module>Distribution</module>
     </modules>
 
     <dependencyManagement>
@@ -42,5 +43,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
 </project>
